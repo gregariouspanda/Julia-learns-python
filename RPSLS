@@ -5,6 +5,7 @@ My first program'''
 
 import random
 name=input('Hi, what is your name? ')
+assert isinstance(name, str )
 print ()
 if name == 'Julia' or name == 'Marymelon':
     print('Welcome to the monkey house')
