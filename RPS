@@ -4,6 +4,7 @@ CMPT100
 My first program'''
 
 import random
+from builtins import input
 name=input('Hi, what is your name? ')
 assert isinstance(name, str )
 print ()
