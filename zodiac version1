@@ -20,22 +20,29 @@ elif year[3] == '8' or year[3] == '9':
     a = 'earth'
     b = 'You are stabilizing and meditating, a natural born peace-keeper. You are serious, practical and logical, but you can be overprotective and conservative.'
 print('Your element is', a+'.', b)
-if year == '1912' or year == '1924' or year =='1936' or year == '1948' or year == '1960' or year == '1972' or year == '1984' or year == '1996' or year == '2008':
+if year%12 == 4:
     c = 'rat'
-    d = 'You have a sharp wit and even sharper tongue
-elif year == '1913' or year == '1925' or year =='1937' or year == '1949' or year == '1961' or year == '1973' or year == '1985' or year == '1997' or year == '2009':
+elif year%12 == 5:
     c = 'ox'
-    d = 'You are strong, and conservative, and were born to lead'
-elif year == '1914' or year == '1926' or year =='1938' or year == '1950' or year == '1962' or year == '1974' or year == '1986' or year == '1998' or year == '2010':
+elif year%12 == 6:
     c = 'tiger'
-    d = 'You are courageous and noble soul,but also highly sensitive and quick to take offence'
-elif year == '1915' or year == '1927' or year =='1939' or year == '1951' or year == '1963' or year == '1975' or year == '1987' or year == '1999' or year == '2011':
+elif year % 12 == 7:
     c = 'rabbit'
-    d = 'You are elegant, peace-loving, the soul of tact'
-elif year == '1916' or year == '1928' or year =='1940' or year == '1952' or year == '1964' or year == '1976' or year == '1988' or year == '2000' or year == '2012':
+elif year%12 == 8:
     c = 'dragon'
-    d = 'You are talented, artistic, and influential'
-elif year == '1917' or year == '1929' or year =='1941' or year == '1953' or year == '1965' or year == '1977' or year == '1989' or year == '2001' or year == '2013':
+elif year%12 == 9:
     c = 'snake'
-    d = 'You are enticing, alluring and highly intelligent'
-print('Your animal is the', c+'.', d)
+elif year%12 == 10:
+    c = 'horse'
+elif year % 12 == 11:
+    c = 'goat'
+elif year%12 == 0:
+    c = 'monkey'
+elif year%12 == 1:
+    c = 'rooster'
+elif year%12 == 2:
+    c = 'dog'
+elif year%12 == 3:
+    c = 'pig'
+print('Your animal is the', c+'.')
+
