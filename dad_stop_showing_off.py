@@ -1,6 +1,6 @@
 '''Flamingo, by the immortal Herb Jeffries'''
 
-year = input("What year were you born? ")
+year = int(raw_input("What year were you born? "))
 
 if year == 1971:
   print "You must be pretty cool to have been born in " + str(year) + "."
