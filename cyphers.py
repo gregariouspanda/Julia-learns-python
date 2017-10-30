@@ -1,3 +1,4 @@
+'''Julia Marden and Giulia De Gennaro'''
 mode = input('Do you want to encrypt or decrypt your message?(e/d) ')
 
 def encription(letter, shift):
@@ -54,15 +55,11 @@ elif mode == 'd':
             print(''.join(decrypt))
 
     brutethisbish = input('This decryption may not be correct, would you like to see the list of all possible decryptions?(y/n) ')
-    if brutethisbish == 'y':
-        print(''.join(new_message(listmessage1,encription,shift)))
-    elif brutethisbish == 'n':
-       print('Alright, peace out!')
-
-
-
-
-
+    for shift in range(26):
+        if brutethisbish == 'y':
+            print(''.join(new_message(listmessage1,encription,shift)))
+        elif brutethisbish == 'n':
+            print('Alright, peace out!')
 else:
     print('I do not like what you got.')
 
