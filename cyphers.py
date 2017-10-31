@@ -1,5 +1,6 @@
 '''Julia Marden and Giulia De Gennaro'''
 mode = input('Do you want to encrypt or decrypt your message?(e/d) ')
+import random
 
 def encription(letter, shift):
     if ord(letter) <= 64 or 91 <= ord(letter) <= 96 or ord(letter) >= 123:
@@ -31,9 +32,18 @@ def letter_frequency(c):
                     0.15, 1.974, 0.074]
     return frequencies[ord(c) - ord('a')]
 
+def frequency_score(words):
+    return sum(map(letter_frequency, words))
+
 if mode == 'e':
     message = input('What message do you want to send? ')
-    shift = int(input('How much do you want to shift the letters? '))
+    shiftchoice = input("How much do you want to shift the letters? (If you're indecisive, write 'surprise me!') ")
+    if shiftchoice == 'surprise me!':
+        shift = random.randint(1,26)
+    else:
+        shift = int(shiftchoice)
+
+
     listmessage = list(message)
 
     print(''.join(new_message(listmessage, encription, shift)))
@@ -41,25 +51,25 @@ if mode == 'e':
 elif mode == 'd':
     message1 = input('What is the message you want to decrypt? ')
     listmessage1 = list(message1)
-    freqall = []
-    for i in range(26):
-        shift = i
-        decrypt = new_message(listmessage1, encription, shift)
-        frequency = []
-        (map(letter_frequency, decrypt))
-        for i in range(len(decrypt)):
-            frequency.append(letter_frequency(decrypt[i]))
-        freqall.append(sum(frequency))
-    for x in freqall:
-        if x == max(freqall):
-            print(''.join(decrypt))
+    decrypted_strings = []
+    for shift in range(26):
+        decrypted_strings.append(new_message(listmessage1, encription, shift))
+    bestscore = 0
+    best_score_shift = 0
+    for shift in range(26):
+        this_score = frequency_score(decrypted_strings[shift])
+        if this_score > bestscore:
+            bestscore = this_score
+            best_score_shift = shift
+            print(''.join(decrypted_strings[best_score_shift]), this_score)
+
 
     brutethisbish = input('This decryption may not be correct, would you like to see the list of all possible decryptions?(y/n) ')
     for shift in range(26):
         if brutethisbish == 'y':
-            print(''.join(new_message(listmessage1,encription,shift)))
+            print(''.join(new_message(listmessage1,encription,shift)), this_score)
         elif brutethisbish == 'n':
-            print('Alright, peace out!')
+            print(end='')
 else:
     print('I do not like what you got.')
 
