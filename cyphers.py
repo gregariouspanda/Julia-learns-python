@@ -31,6 +31,23 @@ def letter_frequency(c):
                     0.15, 1.974, 0.074]
     return frequencies[ord(c) - ord('a')]
 
+# This is what map() is all about.
+# 1. Take a list of letters, aka some_list_of_characters
+# 2. For each letter, compute the letter_frequency for that letter
+#    In other words, "map" the letter to its letter frequency score
+# 3. The result of the mapping is a list of floats. Specifically, it
+#    is a list of the letter frequency scores that correspond to the
+#    characters in some_list_of_characters. Sum up those floats to
+#    get the frequency score for the entire string.
+#
+#    sum of,
+#      the mapping to scores of,
+#        the list of letters
+#
+#    It's just composite functions in algebra/calculus all over again :-)
+def frequency_score(some_list_of_characters):
+  return sum(map(letter_frequency, some_list_of_characters))
+
 if mode == 'e':
     message = input('What message do you want to send? ')
     shift = int(input('How much do you want to shift the letters? '))
@@ -41,18 +58,23 @@ if mode == 'e':
 elif mode == 'd':
     message1 = input('What is the message you want to decrypt? ')
     listmessage1 = list(message1)
-    freqall = []
-    for i in range(26):
-        shift = i
-        decrypt = new_message(listmessage1, encription, shift)
-        frequency = []
-        (map(letter_frequency, decrypt))
-        for i in range(len(decrypt)):
-            frequency.append(letter_frequency(decrypt[i]))
-        freqall.append(sum(frequency))
-    for x in freqall:
-        if x == max(freqall):
-            print(''.join(decrypt))
+
+    decrypted_strings = []
+    for shift in range(26):
+        # Each entry in the decrypted_strings list is itself a list
+        # of (decrypted) characters.
+        decrypted_strings.append(new_message(listmessage1, encription, shift))
+
+    best_score = 0
+    best_score_shift = 0
+
+    for shift in range(26):
+        this_score = frequency_score(decrypted_strings[shift])
+        if this_score > best_score:
+            best_score = this_score
+            best_score_shift = shift
+
+    print(''.join(decrypted_strings[best_score_shift]))
 
     brutethisbish = input('This decryption may not be correct, would you like to see the list of all possible decryptions?(y/n) ')
     for shift in range(26):
