@@ -27,7 +27,7 @@ def upper_fox_encryption(letter, shift):
         if (letter_index + shift) < 26:
             return upperfoxlist[letter_index + shift]
         elif (letter_index + shift) >= 26:
-            return upperfoxlist[25- letter_index]
+            return upperfoxlist[-(26- (letter_index+shift))]
     except ValueError:
         return None
 
@@ -38,7 +38,7 @@ def lower_fox_encryption(letter,shift):
         if (letter_index + shift) < 26:
             return lowerfoxlist[letter_index + shift]
         elif (letter_index + shift) >= 26:
-            return lowerfoxlist[25 - letter_index-1]
+            return lowerfoxlist[-(26-(letter_index+shift))]
     except ValueError:
         return None
 
@@ -137,12 +137,12 @@ elif mode == 'x':
         decrypted_fox.append(new_fox_message(listmessage1, fox_encryption, shift))
         print(''.join(decrypted_fox[shift]))
     bestscore = 0
-    best_score_shift = 0
-    for shift in range(26):
-        this_score = fox_frequency(decrypted_fox[shift])
-        if this_score > bestscore:
-            bestscore = this_score
-            best_score_shift = shift
+    #best_score_shift = 0
+    #for shift in range(26):
+       # this_score = fox_frequency(decrypted_fox[shift])
+       # if this_score > bestscore:
+            #bestscore = this_score
+           # best_score_shift = shift
     #print(''.join(decrypted_fox[best_score_shift]))
 
 
