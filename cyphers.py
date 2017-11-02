@@ -132,26 +132,28 @@ elif mode == 'x':
     message1 = input('What is the message you want to decrypt? ')
     listmessage1 = list(message1)
     decrypted_fox = []
-    decrypted_strings = []
     for shift in range(26):
         decrypted_fox.append(new_fox_message(listmessage1, fox_encryption, shift))
-        print(''.join(decrypted_fox[shift]))
     bestscore = 0
-    #best_score_shift = 0
-    #for shift in range(26):
-       # this_score = fox_frequency(decrypted_fox[shift])
-       # if this_score > bestscore:
-            #bestscore = this_score
-           # best_score_shift = shift
-    #print(''.join(decrypted_fox[best_score_shift]))
+    best_score_shift = 0
+    for shift in range(26):
+       this_score = frequency_score(decrypted_fox[shift])
+       if this_score > bestscore:
+           bestscore = this_score
+           best_score_shift = shift
+    print(''.join(decrypted_fox[best_score_shift]))
 
 
 
 
     brutethisbish = input('This decryption may not be correct, would you like to see the list of all possible decryptions?(y/n) ')
     if brutethisbish == 'y':
-        for shift in range(26):
-            print(''.join(new_message(listmessage1,encription,shift)))
+        if mode == 'e':
+            for shift in range(26):
+                print(''.join(new_message(listmessage1,encription,shift)))
+        elif mode == 'x':
+            for shift in range(26):
+                print(''.join(new_fox_message(listmessage1, encription, shift)))
 else:
     print('I do not like what you got.')
 
