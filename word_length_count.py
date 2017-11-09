@@ -20,7 +20,8 @@ for key in sorted_keys:
 y_pos = np.arange(len(value))
 
 plt.bar(y_pos, value, align='center', alpha=0.5)
-plt.xticks(y_pos, sorted_keys)plt.xlabel('Number of words')
-plt.ylabel('Length of word')
-plt.title('Number of words of a certain length')
+plt.xticks(y_pos, sorted_keys)
+plt.ylabel('Number of words')
+plt.xlabel('Length of word')
+plt.title('Word length distribution')
 plt.show()
