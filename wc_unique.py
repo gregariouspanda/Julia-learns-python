@@ -1,26 +1,33 @@
 import sys
+import re
+
+# Returns a list of words from a file, with all of the newlines stripped out
+def read_file(file_name):
+    #f(x) = read in the characters from file x
+    #g(x) = substitute the non-letter characters with spaces in a list of characters x
+    #h(x) = join a list x of characters into a single string with '' between character
+    #i(x) = split a string at space boundaries
+    #i(h(g(f(x))))
+
+    return ''.join(
+                re.sub(
+                  re.compile('[^a-z]', re.IGNORECASE),
+                  ' ',
+                  open(file_name, 'r').read()
+                )
+              ).split()
 
 def main():
-    try:
-        name = sys.argv[1]
-        f = open(name,'r')
-        s = f.read()
-        m = (map(lambda x: x if x.isalpha() else ' ', s))
-        x = ''.join(m)
-        lst = x.split()
-        words = {}
-        for word in lst:
-            if word not in words.keys():
-                words[word] = 1
-            else:
-                words[word] += 1
+    lst = read_file(sys.argv[1])
+    words = {}
+    for word in lst:
+        if word not in words.keys():
+            words[word] = 1
+        else:
+            words[word] += 1
 
-        print(words)
-        f.close()
-        return(words)
-    except:
-        print('I do not like what you got.')
-        return None
+    print(words)
+    return(words)
 
 if __name__ == '__main__':
     main()
