@@ -50,7 +50,7 @@ def create_dictionary(file_name, context_length):
 def generate_story(word_dict, num_words, context_length):
     story = [random.choice(word_dict[()])]
 
-    while len(story) < num_words:
+    while (len(story) < num_words) or (story[0][-1] not in '.?!'):
         context = context_tuple(story, context_length)
 
         # If we generate a context that does not occur
