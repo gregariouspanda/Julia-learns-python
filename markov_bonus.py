@@ -63,7 +63,7 @@ def generate_story(word_dict, num_words, context_length):
             context = ()
         story.insert(0, random.choice(word_dict[context]))
 
-    return ' '.join(list(reversed(story)))
+    return ' '.join(reversed(story))
 
 def main():
     context_length = int(sys.argv[4])
