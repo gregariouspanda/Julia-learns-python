@@ -52,15 +52,19 @@ def generate_story(word_dict, num_words, context_length):
 
     while len(story) < num_words:
         context = context_tuple(story, context_length)
+
         # If we generate a context that does not occur
-        # in the training text, it's probably the context
-        # of length context_length that occurs exactly at
-        # the end of the training file without punctuation
+        # in the training text with following text, it's
+        # probably the context of length context_length
+        # that occurs exactly at the end of the training
+        # file without punctuation.
+        #
         # In that case, act as if the prior word had a
-        # punctuation mark and try again.
+        # punctuation mark and start a new sentence.
         if context not in word_dict.keys():
             story[0] = story[0] + random.choice(['.', '!', '?'])
             context = ()
+
         story.insert(0, random.choice(word_dict[context]))
 
     return ' '.join(reversed(story))
